@@ -1,14 +1,14 @@
 <template>
    <Layout>
       <Sider hide-trigger>
-          <div id="aside_menu" style="width:200px">
+          <div id="aside_menu">
               <div id="aside_user">
                   <div class="img">
                       <img src="../assets/img/avatar.jpg" alt="" title="我的头像">
                   </div>
                   <p>你好,合肥开元，欢迎登陆</p>
               </div>
-              <Menu active-name="/index/homepage" v-on:on-select="handleRoute" theme="dark" width="auto" :open-names="['1']" :accordion='accordion'>
+              <Menu :active-name="activeName" v-on:on-select="handleRoute" theme="dark" width="auto" :open-names="openName" :accordion='accordion'>
                   <MenuItem name="/index/homepage">
                       <Icon type="android-home"></Icon>
                           首页
@@ -18,12 +18,12 @@
                           <Icon type="android-settings"></Icon>
                           系统配置
                       </template>
-                      <MenuItem name="/index/list">菜单管理</MenuItem>
-                      <MenuItem name="/index/homepage">角色管理</MenuItem>
-                      <MenuItem name="2-3">登录账号</MenuItem>
-                      <MenuItem name="2-4">系统参数</MenuItem>
-                      <MenuItem name="2-5">系统缓存</MenuItem>
-                      <MenuItem name="2-6">区域管理</MenuItem>
+                      <MenuItem name="/index/menuManage">菜单管理</MenuItem>
+                      <MenuItem name="/index/roleManage">角色管理</MenuItem>
+                      <MenuItem name="/index/account">登录账号</MenuItem>
+                      <MenuItem name="/index/systemParam">系统参数</MenuItem>
+                      <MenuItem name="/index/systemCache">系统缓存</MenuItem>
+                      <MenuItem name="/index/areaManage">区域管理</MenuItem>
                   </Submenu>
                   <Submenu name="3">
                       <template slot="title">
@@ -102,16 +102,20 @@
 export default {
   data(){
     return {
+      activeName: "/index/homepage",
+      openName: [],
       accordion: true,
     }
   },
-
+  created(){
+      this.activeName = window.localStorage.getItem('currentMenu')
+  },
   methods: {
     handleRoute(name){
       this.$router.push({path: name})
+      window.localStorage.setItem('currentMenu',name)
     }
-  }
-
+  },
 }
 </script>
 

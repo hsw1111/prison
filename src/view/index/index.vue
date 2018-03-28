@@ -30,9 +30,6 @@
             "Head": Head,
             "MenuComponent": Menu,
         },
-        mounted(){
-            document.title= "首页-监狱管理平台"
-        },
         data(){
             return {
                 
@@ -55,7 +52,7 @@
 }
 
 .layout-nav{
-    width: 420px;
+    // width: 420px;
     margin: 0 auto;
     margin-right: 20px;
 }
@@ -65,7 +62,7 @@
 .layout-content-main {
     padding: 20px;
     height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     margin-bottom: 20px;
 }
 

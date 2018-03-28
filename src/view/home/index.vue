@@ -120,7 +120,9 @@ export default {
       checkAllGroup: []
     }
   },
-
+  created(){
+    document.title = '首页-监狱管理平台'
+  },
   methods: {
     handleCheckAll () {
         if (this.indeterminate) {

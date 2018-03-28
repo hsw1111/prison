@@ -4,7 +4,14 @@
 import Login from '../view/login/index.vue'
 import Index from '../view/index/index.vue'
 import Home from '../view/home/index.vue'
-import List from '../view/list/index.vue'
+//系统配置
+import MenuManage from '../view/systemConfig/menuManage/index.vue'
+import RoleManage from '../view/systemConfig/roleManage/index.vue'
+import Account from '../view/systemConfig/account/index.vue'
+import SystemParam from '../view/systemConfig/systemParam/index.vue'
+
+
+
 let routes = [
     {
         path:'/login',
@@ -21,9 +28,24 @@ let routes = [
                 name:'首页',
             },
             {
-                path:'/index/list',
-                component: List,
-                name:'列表页',
+                path:'/index/menuManage',
+                component: MenuManage,
+                name:'菜单管理',
+            },
+            {
+                path:'/index/roleManage',
+                component: RoleManage,
+                name:'角色管理',
+            },
+            {
+                path:'/index/account',
+                component: Account,
+                name:'登录账号',
+            },
+            {
+                path:'/index/systemParam',
+                component: SystemParam,
+                name:'系统参数',
             }
         ]
     }

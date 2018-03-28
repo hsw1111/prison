@@ -13,6 +13,24 @@ Vue.use(vuescroll)
 Vue.prototype.axios = axios
 axios.defaults.withCredentials=true;
 
+router.beforeEach((to, from, next) => {
+    var user = window.localStorage.getItem("user")
+    var password = window.localStorage.getItem("password")
+    if(user && password){
+        console.log(1111)
+        next()
+    }else{
+        if(to.path=='/login'){
+            console.log(222)
+            next()
+        }else{
+            console.log(333)
+            next({path:'/login'})
+        }
+        
+    }
+})
+
 var vm = new Vue({
     el:"#app",
     router,

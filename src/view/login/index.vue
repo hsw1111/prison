@@ -55,6 +55,13 @@ export default {
   methods: {
       // 点击登录
       handleSubmit(){
+          if(this.formValidate.user.trim()=='' || this.formValidate.password.trim()==''){
+              alert("请输入用户名或密码")
+              return
+          }else{
+              window.localStorage.setItem("user",this.formValidate.user)
+              window.localStorage.setItem("password",this.formValidate.password)
+          }
           // 跳转到首页
           this.$router.push({path: '/index/homepage'})
       },
