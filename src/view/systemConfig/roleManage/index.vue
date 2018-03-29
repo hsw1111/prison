@@ -55,7 +55,11 @@ export default {
       columns:[
         {
             title: '角色名称',
-            key: 'address'
+            key: 'name',
+            // render:(h,params) => {
+            //     console.log(params)
+            //     return h('div',params.row.name)
+            // }
         },
         {
             title: '角色描述',
@@ -113,11 +117,27 @@ export default {
       tableData: [
         {
             name: '管理员',
-            address: '管理员'
+            address: '1'
         },
         {
             name: '管理员',
-            address: '管理员'
+            address: '2'
+        },
+        {
+            name: '管理员1',
+            address: '2'
+        },
+        {
+            name: '管理员',
+            address: '2'
+        },
+        {
+            name: '管理员1',
+            address: '1'
+        },
+        {
+            name: '管理员1',
+            address: '2'
         },
       ],
       editModal: false,
@@ -127,11 +147,15 @@ export default {
       },
       delModal: false,
       disModal: false,
-      disForm: ''
+      disForm: {}
     }
   },
   created(){
-    document.title = '系统配置-角色管理'
+    document.title = '系统配置-角色管理'      
+  },
+  mounted(){
+    // 合并单元格
+    this.mergeCells()
   },
   methods: {
     // 点击编辑
@@ -145,6 +169,37 @@ export default {
     // 点击分配菜单
     distribute() {
       this.disModal = true;
+    },
+    // 合并单元格
+    mergeCells() {
+        var mark = 1; //这里涉及到简单的运算，mark是计算每次需要合并的格子数
+        var columsName = ['name'];//需要合并的列名称
+        var columsIndex = [0];//需要合并的列索引值
+        var data = this.tableData
+        var trArr = $(".ivu-table-tbody").find("tr");//所有行
+        for (var k = 0; k < columsName.length; k++)//这里循环所有要合并的列
+        {
+            for (var i = 1; i < this.tableData.length; i++) { //这里循环表格当前的数据
+                var tdCurArr = trArr.eq(i).find("td").eq(columsIndex[k]);//获取当前行的当前列
+                var tdPreArr = trArr.eq(i - 1).find("td").eq(columsIndex[k]);//获取上一行的当前列
+
+                if (data[i][columsName[k]] == data[i - 1][columsName[k]]) { //后一行的值与前一行的值做比较，相同就需要合并
+                    mark += 1;
+                    if (mark > 2) {
+                        tdPreArr = trArr.eq(i - mark + 1).find("td").eq(columsIndex[k]);
+                    }
+                    tdPreArr.each(function () {//上一行增加rowspan属性
+                        $(this).attr("rowspan", mark);
+                        $(this).css("vertical-align", "middle");
+                    });
+                    tdCurArr.each(function () {//当前行隐藏
+                        $(this).css("display", "none");
+                    });
+                } else {
+                    mark = 1; //一旦前后两行的值不一样了，那么需要合并的格子数mark就需要重新计算
+                }
+            }
+        }
     }
   }
 }

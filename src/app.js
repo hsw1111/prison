@@ -19,6 +19,10 @@ router.beforeEach((to, from, next) => {
     if(user && password){
         console.log(1111)
         next()
+        if(to.path=='/'){
+            console.log(222)
+            next({path:'/index/homepage'})
+        }
     }else{
         if(to.path=='/login'){
             console.log(222)

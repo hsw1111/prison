@@ -11,7 +11,7 @@
           <span>合肥开元</span>
       </div>
       
-      <div id="login-out" title="退出">
+      <div id="login-out" title="退出" @click='logout'>
           <Icon type="log-out"></Icon>
       </div>
   </Header>
@@ -19,7 +19,17 @@
 
 <script>
 export default {
-  
+  data(){
+      return {
+          
+      }
+  },
+  methods: {
+      logout(){
+          window.localStorage.clear();
+          this.$router.push('/login')
+      }
+  }
 }
 </script>
 

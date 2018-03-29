@@ -9,7 +9,8 @@ import MenuManage from '../view/systemConfig/menuManage/index.vue'
 import RoleManage from '../view/systemConfig/roleManage/index.vue'
 import Account from '../view/systemConfig/account/index.vue'
 import SystemParam from '../view/systemConfig/systemParam/index.vue'
-
+import SystemCache from '../view/systemConfig/systemCache/index.vue'
+import AreaManage from '../view/systemConfig/areaManage/index.vue'
 
 
 let routes = [
@@ -46,6 +47,16 @@ let routes = [
                 path:'/index/systemParam',
                 component: SystemParam,
                 name:'系统参数',
+            },
+            {
+                path:'/index/systemCache',
+                component: SystemCache,
+                name:'系统缓存',
+            },
+            {
+                path:'/index/areaManage',
+                component: AreaManage,
+                name:'区域管理',
             }
         ]
     }

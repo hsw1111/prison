@@ -13,7 +13,7 @@
                       <Icon type="android-home"></Icon>
                           首页
                   </MenuItem>
-                  <Submenu name="system">
+                  <Submenu name="systemConfig">
                       <template slot="title">
                           <Icon type="android-settings"></Icon>
                           系统配置
@@ -25,16 +25,16 @@
                       <MenuItem name="/index/systemCache">系统缓存</MenuItem>
                       <MenuItem name="/index/areaManage">区域管理</MenuItem>
                   </Submenu>
-                  <Submenu name="3">
+                  <Submenu name="basicInfo">
                       <template slot="title">
                           <Icon type="ios-keypad"></Icon>
                           基础信息
                       </template>
-                      <MenuItem name="3-1">部门管理</MenuItem>
-                      <MenuItem name="3-2">民警管理</MenuItem>
-                      <MenuItem name="3-3">职工管理</MenuItem>
-                      <MenuItem name="3-4">罪犯管理</MenuItem>
-                      <MenuItem name="3-5">警务通</MenuItem>
+                      <MenuItem name="departManage">部门管理</MenuItem>
+                      <MenuItem name="policeManage">民警管理</MenuItem>
+                      <MenuItem name="staffManage">职工管理</MenuItem>
+                      <MenuItem name="criminalManage">罪犯管理</MenuItem>
+                      <MenuItem name="policing">警务通</MenuItem>
                       <MenuItem name="3-6">基站设备</MenuItem>
                       <MenuItem name="3-7">罪犯胸卡</MenuItem>
                       <MenuItem name="3-8">访客胸卡</MenuItem>
@@ -108,7 +108,7 @@ export default {
     }
   },
   created(){
-      this.activeName = window.localStorage.getItem('currentMenu')
+          this.activeName = window.localStorage.getItem('currentMenu')
   },
   methods: {
     handleRoute(name){
@@ -116,6 +116,9 @@ export default {
       window.localStorage.setItem('currentMenu',name)
     }
   },
+  watch: {
+  }
+
 }
 </script>
 
